@@ -34,7 +34,7 @@ class @UploadFromUrl
 				resolve base64data
 			return
 
-	@run: (url) ->
+	@run: (url, opts) ->
 		that = @
 		return new Promise (resolve, reject) ->
 			_fileName = that._getNameFromUrl url
@@ -42,5 +42,6 @@ class @UploadFromUrl
 				.then (blob) ->
 					that._getBase64 blob
 						.then (base64) ->
-							resolve that._blobToFile(blob, _fileName), base64
+							_to_file = if opts == "--with-blob" then blob else that._blobToFile(blob, _fileName) 
+							resolve [ _to_file, base64 ]
 			return 

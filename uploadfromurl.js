@@ -51,7 +51,7 @@
       });
     };
 
-    UploadFromUrl.run = function(url) {
+    UploadFromUrl.run = function(url, opts) {
       var that;
       that = this;
       return new Promise(function(resolve, reject) {
@@ -59,7 +59,9 @@
         _fileName = that._getNameFromUrl(url);
         that._getBlob(url).then(function(blob) {
           return that._getBase64(blob).then(function(base64) {
-            return resolve([that._blobToFile(blob, _fileName), base64]);
+            var _to_file;
+            _to_file = opts === "--with-blob" ? blob : that._blobToFile(blob, _fileName);
+            return resolve([_to_file, base64]);
           });
         });
       });

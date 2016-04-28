@@ -1,6 +1,6 @@
 # uploadfromurl
 
-Get Javascript File object from URL, like from <input type="file">.
+Get Javascript File object from URL, like from input type="file".
 
 # Usage
   
